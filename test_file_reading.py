@@ -1,5 +1,5 @@
 import pytest
-from mazegame import *
+from MazeCode.mazegame_code import *
 
 def test_read_success():
     errorMsg = displayList()
