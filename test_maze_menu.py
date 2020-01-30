@@ -43,5 +43,5 @@ def test_option4(): #test case 10
     
 def test_option0(): #test case 11
     result = check_option("0")
-    assert result == "Exiting"
+    assert result == False
     
