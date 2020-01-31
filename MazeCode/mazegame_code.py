@@ -1,6 +1,7 @@
 """
 Dear all, please write a unit test befor coding a function.
 """
+
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
 run = True
 #Display menu function
@@ -28,7 +29,7 @@ def check_option(option):
         print("Exiting...")
         return False
     else:
-        print("Invalid option")
+        print ("Invalid option")
         return "Invalid Option"
 
     
