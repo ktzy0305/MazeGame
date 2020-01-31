@@ -23,18 +23,18 @@ def test_upward_movement(): #testcase 2
 
 def test_downward_movement(): #testcase 3
     result = move("S")
-    assert result == "Moved upwards"
+    assert result == "Moved downwards"
 
 def test_left_movement(): #testcase 4
     result = move("A")
-    assert result == "Moved upwards"
+    assert result == "Moved left"
 
 def test_right_movement(): #testcase 5
     result = move("D")
-    assert result == "Moved upwards"
+    assert result == "Moved right"
 
 def test_wall_blockage(): #testcase 6
-    result = move("A")
+    result = move("D")
     assert result == "Invalid Movement. Please try again."
     
 def test_menu_exit(): #testcase 7
