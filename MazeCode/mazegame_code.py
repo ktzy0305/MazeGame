@@ -40,8 +40,21 @@ def check_List(maze):
         return (errorMsg)
     else:
         errorMsg = "List is empty."
-        print (errorMsg)
+        print (errorMsg + " Please load the maze with Option 1")
         return (errorMsg)
+def move(maze_structure):
+def current_location(maze_structure):
+    try: 
+        for location in maze_structure:
+            if "A" in  location:
+                print ("" + str(mylist.index(sub_list)))
+                print ("" + str(sub_list.index("A")))
+                return (mylist.index(sub_list), sub_list.index(char))
+    #raise ValueError("'{char}' is not in list".format(char = char))
+    catch
+
+def ending_location(maze_structure):
+def SpaceCheck(direction_value):
 
 #try_list=[["X","O","A","B"], ["1","2"]]
 #try_empty = []
@@ -77,7 +90,15 @@ def check_option(option):
     elif option == "2":
         check_List(maze)
         return "Option 2 selected"
+    
     elif option == "3":
+        mazecheck = check_List(maze)
+        if ((mazecheck!= "List is empty.") and (mazecheck != "The list is not a maze.")):
+            current_location(maze)
+            end_location(maze)
+            print ("\nPress '' for UP, '' for LEFT, '' for DOWN, '' for RIGHT, '' for MENU")
+            choice = input("Select your Move: ")
+            movement = move(choice)
         return "Option 3 selected"
     elif option == "4":
         return "Option 4 selected"
@@ -91,5 +112,5 @@ def check_option(option):
     
 while run != False:
     display_menu(True)
-    option = input ("Enter your option: ")
-    run = check_option(option)
+    #option = 
+    run = check_option(input ("Enter your option: "))

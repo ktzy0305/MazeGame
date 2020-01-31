@@ -51,8 +51,12 @@ def test_free_space():#testcase 9
     
 def test_current_location():#testcase 10
     result = current_location("[X,O,O,A,O,O,X]")
-    assert result == "Row1, Column3"
-    
-def test_case_sensitive():#testcase 11
+    assert result == "Row 0, Column 3"
+
+def test_end_location():#testcase 11
+    result = end_location("[X,B,O,A,O,O,X]")
+    assert result == "Row 0, Column 1"
+
+def test_case_sensitive():#testcase 12
     result = move("a")
     assert result == "Moved upwards"
