@@ -36,6 +36,41 @@ def check_filename(filename):
         print("Error, file not found")
         return "Filename incorrect"
 
+def check_List(maze):
+    if len(maze) != 0:
+        errorMsg = "List is occupied."
+        checkMaze(maze)
+        return (errorMsg)
+    else:
+        errorMsg = "List is empty."
+        print (errorMsg)
+        return (errorMsg)
+
+#try_list=[["X","O","A","B"], ["1","2"]]
+#try_empty = []
+#verify_list=[["X","O","A","B"], ["X","O","A","B"]]
+
+def checkMaze(list):
+    maze_check = True
+    for i in list:
+        type_total = 0
+        total = len (i)
+        typeX = i.count("X")
+        typeO = i.count("O")
+        typeA = i.count("A")
+        typeB = i.count("B")
+        type_total = typeX + typeO + typeA + typeB
+        
+        if total != type_total:
+            print ("The list is not a maze.")
+            maze_check = False
+            return "The list is not a maze."
+        
+    if maze_check:
+        for i in list:
+            print(i)
+    return "The list is a maze."
+
 def check_option(option):
     if option == "1":
         file = input("Enter the name of the data file: ")
@@ -43,6 +78,7 @@ def check_option(option):
         return "Option 1 selected"
     
     elif option == "2":
+        check_List(maze)
         return "Option 2 selected"
     elif option == "3":
         return "Option 3 selected"
