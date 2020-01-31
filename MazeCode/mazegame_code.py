@@ -1,8 +1,12 @@
 """
 Dear all, please write a unit test befor coding a function.
 """
+
+import csv
+
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
 run = True
+maze = []
 #Display menu function
 def display_menu(check):
     if check == True:
@@ -15,9 +19,26 @@ def display_menu(check):
     else:
         return "Invalid menu"
 
+def check_filename(filename):
+    try :
+        f = open(filename)
+        csv_reader = csv.reader(f,delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            maze.append(row)
+            line_count += 1
+        print("Number of lines read: " + str(line_count))
+        return "Filename correct"
+    except IOError:
+        print("Error, file not found")
+        return "Filename incorrect"
+
 def check_option(option):
     if option == "1":
+        file = input("Enter the name of the data file: ")
+        check_filename(file)
         return "Option 1 selected"
+    
     elif option == "2":
         return "Option 2 selected"
     elif option == "3":
