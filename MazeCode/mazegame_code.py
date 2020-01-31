@@ -2,11 +2,8 @@
 Dear all, please write a unit test befor coding a function.
 """
 
-<<<<<<< HEAD
-=======
 import csv
 
->>>>>>> eec9c3dd87c88b8461993432c587cf9766a180e1
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
 run = True
 maze = []
