@@ -4,8 +4,13 @@ Dear all, please write a unit test befor coding a function.
 
 import csv
 
+# Options for main menu
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
+# Options for configuration menu
+configuration_menu = ["Create wall", "Create passageway", "Create start point", "Create end point"]
 run = True
+# State Object to check if the game is current at the configuration menu
+configureMenuState = False
 maze = []
 #Display menu function
 def display_menu(check):
@@ -18,6 +23,16 @@ def display_menu(check):
         return "Displaying Menu"
     else:
         return "Invalid menu"
+
+# Display Configuration Menu Function
+def displayConfigurationMenu():
+    title = "CONFIGURATION MENU"
+    configureMenuState = True
+    print("\n{0}\n{1}".format(title, len(title)*"-"))
+    for i, item in enumerate(configuration_menu, 1):
+        print("[{0}]  {1}".format(i, item))
+    print()# to print a space in between the last choice
+    print('[0]  Exit to Main Menu') 
 
 def check_filename(filename):
     try :
@@ -43,6 +58,7 @@ def check_List(maze):
         print (errorMsg + " Please load the maze with Option 1")
         return (errorMsg)
 def move(maze_structure):
+    return
 def current_location(maze_structure):
     try: 
         for location in maze_structure:
@@ -51,11 +67,13 @@ def current_location(maze_structure):
                 print ("" + str(sub_list.index("A")))
                 return (mylist.index(sub_list), sub_list.index(char))
     #raise ValueError("'{char}' is not in list".format(char = char))
-    catch
+    except:
+        print("Failed to find current location")
 
 def ending_location(maze_structure):
+    return
 def SpaceCheck(direction_value):
-
+    return
 #try_list=[["X","O","A","B"], ["1","2"]]
 #try_empty = []
 #verify_list=[["X","O","A","B"], ["X","O","A","B"]]
@@ -101,6 +119,8 @@ def check_option(option):
             movement = move(choice)
         return "Option 3 selected"
     elif option == "4":
+        displayConfigurationMenu()
+        config_option = input("Enter your options: ")
         return "Option 4 selected"
     elif option == "0":
         print("Exiting...")
