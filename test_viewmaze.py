@@ -1,5 +1,5 @@
 import pytest
-from MazeCode.mazegame_code import *
+from MazeCode.mazegame import *
 
 
 emptyList = []

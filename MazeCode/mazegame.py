@@ -1,9 +1,11 @@
 """
-Dear all, please write a unit test befor coding a function.
+Dear all, please write a unit test before coding a function.
 """
 
 import csv
 import time
+
+
 
 # Options for main menu
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
@@ -246,8 +248,10 @@ def game_end():
 
 
 
-def check_option(option):
+def check_option(option, end=''):
     if option == "1":
+        if end=="break":
+            return "Option 1 selected"
         maze.clear()
         file = input("Enter the name of the data file: ")
         check_filename(file)
@@ -260,6 +264,8 @@ def check_option(option):
         return "Option 2 selected"
     
     elif option == "3":
+        if end=="break":
+            return "Option 3 selected"
         continu = True
         while continu != False:
             mazecheck = check_List(maze)
@@ -281,6 +287,8 @@ def check_option(option):
         return "Option 3 selected"
     
     elif option == "4":
+        if end=="break":
+            return "Option 4 selected"
         displayConfigurationMenu()
         config_option = input("Enter your options: ")
         return "Option 4 selected"
@@ -293,7 +301,7 @@ def check_option(option):
         return "Invalid Option"
 
     
-while run != False:
+"""while run != False:
     display_menu(True)
     #option = 
-    run = check_option(input ("Enter your option: "))
+    run = check_option(input ("Enter your option: "))"""

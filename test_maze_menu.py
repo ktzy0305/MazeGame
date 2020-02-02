@@ -1,5 +1,5 @@
 import pytest
-from MazeCode.mazegame_code import *
+from MazeCode.mazegame import *
 
 def test_invalid_display_menu(): #test case 1
     result = display_menu(False)
@@ -26,7 +26,7 @@ def  test_double_digits_input(): #test case 6
     assert result == "Invalid Option"
     
 def test_option1(): #test case 7
-    result = check_option("1")
+    result = check_option("1", "break")
     assert result == "Option 1 selected"
     
 def test_option2(): #test case 8
@@ -34,11 +34,11 @@ def test_option2(): #test case 8
     assert result == "Option 2 selected"
     
 def test_option3(): #test case 9
-    result = check_option("3")
+    result = check_option("3", "break")
     assert result == "Option 3 selected"
     
 def test_option4(): #test case 10
-    result = check_option("4")
+    result = check_option("4", "break")
     assert result == "Option 4 selected"
     
 def test_option0(): #test case 11

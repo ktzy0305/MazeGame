@@ -1,6 +1,6 @@
 import mock
 import pytest
-from MazeCode.mazegame_code import *
+from MazeCode.mazegame import *
 
 @pytest.yield_fixture
 def try_input():
