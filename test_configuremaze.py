@@ -1,10 +1,7 @@
 import pytest
-<<<<<<< HEAD
 # from MazeCode.mazegame import *
-=======
-from MazeCode import mazegame_code
-from MazeCode.mazegame_code import *
->>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58
+from MazeCode import mazegame
+from MazeCode.mazegame import *
 
 def test_display_configuration_menu():
     message = displayConfigurationMenu()
@@ -47,11 +44,8 @@ def test_return_to_configuration_menu():
     assert value == False
 
 def test_exit_to_main_menu_from_configuration_option():
-<<<<<<< HEAD
     enterCreateWallMenu()
     message = exitToMainMenu()
     return message == "Exit to Main Menu"
-=======
     value = handle_configuration_option_input("M", createWall)
     assert value == True
->>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58

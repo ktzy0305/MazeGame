@@ -373,13 +373,8 @@ def check_configuration_option(option):
 #try_empty = []
 #verify_list=[["X","O","A","B"], ["X","O","A","B"]]
 
-<<<<<<< HEAD:MazeCode/mazegame.py
-
 
 def check_option(option, end=''):
-=======
-def check_option(option):
->>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58:MazeCode/mazegame_code.py
     if option == "1":
         if end=="break":
             return "Option 1 selected"
@@ -418,12 +413,10 @@ def check_option(option):
         return "Option 3 selected"
     
     elif option == "4":
-<<<<<<< HEAD:MazeCode/mazegame.py
         if end=="break":
             return "Option 4 selected"
         displayConfigurationMenu()
         config_option = input("Enter your options: ")
-=======
         empty = check_List(maze)
         if empty == "List is occupied.":
             isDisplayingConfigurationMenu = True
@@ -433,7 +426,6 @@ def check_option(option):
                 print("\n\n")
                 isDisplayingConfigurationMenu = check_configuration_option(input("Enter your option: "))
 
->>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58:MazeCode/mazegame_code.py
         return "Option 4 selected"
 
     elif option == "0":
@@ -445,15 +437,12 @@ def check_option(option):
         print ("Invalid option")
         return "Invalid Option"
 
-<<<<<<< HEAD:MazeCode/mazegame.py
     
 """while run != False:
     display_menu(True)
     #option = 
     run = check_option(input ("Enter your option: "))"""
-=======
 if __name__ == "__main__":
     while run != False:
         display_menu(True)
         run = check_option(input ("Enter your option: "))
->>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58:MazeCode/mazegame_code.py
