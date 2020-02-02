@@ -4,6 +4,7 @@ Dear all, please write a unit test before coding a function.
 
 import csv
 import time
+import re
 
 
 
@@ -11,19 +12,24 @@ import time
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
 # Options for configuration menu
 configuration_menu = ["Create wall", "Create passageway", "Create start point", "Create end point"]
+# State to check if game is running
 run = True
-# State Object to check if the game is current at the configuration menu
-configureMenuState = False
+# Variable to store maze object
 maze = []
+
+#Classes
+class GameError(Exception):
+    pass
 
 #Display menu function
 def display_menu(check):
     if check == True:
         print('\n==========\nMAIN MENU \n==========')#to print admin menu heading
         for i, item in enumerate(menu,1):
-            print([i],'',item)#to print admin menu choice '' is used for formattig, to format to the same as the sample
+            print([i],'',item)#to print admin menu choice '' is used for formatting, to format to the same as the sample
         print()# to print a space in between the last choice of Admin Menu and the heading of Rider Menu
         print('[0]  Exit Maze') #to print out the rider menu and choices
+        print('')
         return "Displaying Menu"
     else:
         return "Invalid menu"
@@ -31,13 +37,18 @@ def display_menu(check):
 # Display Configuration Menu Function
 def displayConfigurationMenu():
     title = "CONFIGURATION MENU"
-    configureMenuState = True
-    print("\n{0}\n{1}".format(title, len(title)*"-"))
+    print("\n{0}\n{1}".format(title, len(title)*"="))
     for i, item in enumerate(configuration_menu, 1):
         print("[{0}]  {1}".format(i, item))
     print()# to print a space in between the last choice
     print('[0]  Exit to Main Menu') 
+    return "Displaying Configuration Menu"
 
+# Function to check if maze is empty
+def isEmpty(maze):
+    return len(maze) == 0
+
+# Function to check filename
 def check_filename(filename):
     try :
         f = open(filename)
@@ -53,7 +64,7 @@ def check_filename(filename):
         return "Filename incorrect"
 
 def check_List(maze):
-    if len(maze) != 0:
+    if not isEmpty(maze):
         errorMsg = "List is occupied."
         return (errorMsg)
     else:
@@ -85,7 +96,8 @@ def checkMaze(list):
         for i in list:
             if row == 1:
                 print("="*(len(i)*3))
-                row =2
+                print("")
+                row = 2
             print(i)
     return "The list is a maze."
 
@@ -197,7 +209,7 @@ def move(movement, start=''):
         return msg
 
     
-def  current_location(maze_structure):
+def current_location(maze_structure):
     check = True
     for location in maze_structure:
         if "A" in  location:
@@ -242,13 +254,132 @@ def game_end():
         i -= 1
     print("Exiting...")
 
+# Function to check if the text matches the coordinate pattern
+def is_a_coordinate(text):
+    match = re.search("^[0-9],[0-9]$", text)
+    if match:
+        return True
+    else:
+        return False
+
+# Function to split the coordinate text into a list containing 2 numbers
+def coordinate_text_split(text):
+    # txt = "The rain in Spain"
+    x = text.split(",")
+    coordinates = list(map(lambda item: int(item), x))
+    return coordinates
+
+# Function to modify value in maze:
+def modifyMaze(value, *args):
+    if isEmpty(maze):
+        raise GameError("No maze is loaded")
+    else:
+        if len(args) > 2:
+            raise ValueError()
+        else:
+            row = args[0]
+            column = args[1]
+            if(row < 1):
+                raise GameError("Invalid Row Value")
+                # print("Invalid Row Value: {0}".format(row))
+            elif(column < 1):
+                raise GameError("Invalid Column Value")
+                # print("Invalid Column Value: {0}".format(column))
+            elif(len(maze) < row):
+                raise GameError("Invalid Row Value")
+            elif(len(maze[row]) < column):
+                raise GameError("Invalid Column Value")
+            else:
+                maze[row-1][column-1] = value
+
+# Create Wall
+def createWall(*args):
+    modifyMaze("X", *args)
+
+def createPassageWay(*args):
+    modifyMaze("O", *args)
+
+def createStartPoint(*args):
+    modifyMaze("A", *args)
+
+def createEndPoint(*args):
+    modifyMaze("B", *args)
+
+def handle_configuration_option_input(value, function):
+    if is_a_coordinate(value):
+        coordinates = coordinate_text_split(value)
+        try:
+            function(*coordinates)
+        except GameError:
+            print("Invalid Coordinates {0}".format(tuple(coordinates)))
+        return False
+    elif value == 'B':
+        return False
+    elif value == 'M':
+        return True
+    else:
+        return False
+        
+def check_configuration_option(option):
+    if option == "1":
+        print("Enter the coordinate of the item you wish to change.")
+        print("Format: Row,Column\tExample: 3,4")
+        print("Type 'B' to return Configuration Menu")
+        print("Type 'M' to return to Main Menu") 
+        action = handle_configuration_option_input(input("Coordinate: "), createWall)
+        if(action):
+            return False
+        return "Configuration Option 1 is selected"
+
+    elif option == "2":
+        print("Enter the coordinate of the item you wish to change.")
+        print("Format: Row,Column\tExample: 3,4")
+        print("Type 'B' to return Configuration Menu")
+        print("Type 'M' to return to Main Menu") 
+        action = handle_configuration_option_input(input("Coordinate: "), createPassageWay)
+        if(action):
+            return False
+        return "Configuration Option 2 is selected"
+        
+    elif option == "3":
+        print("Enter the coordinate of the item you wish to change.")
+        print("Format: Row,Column\tExample: 3,4")
+        print("Type 'B' to return Configuration Menu")
+        print("Type 'M' to return to Main Menu") 
+        action = handle_configuration_option_input(input("Coordinate: "), createStartPoint)
+        if(action):
+            return False
+        return "Configuration Option 3 is selected"
+
+    elif option == "4":
+        print("Enter the coordinate of the item you wish to change.")
+        print("Format: Row,Column\tExample: 3,4")
+        print("Type 'B' to return Configuration Menu")
+        print("Type 'M' to return to Main Menu") 
+        action = handle_configuration_option_input(input("Coordinate: "), createEndPoint)
+        if(action):
+            return False
+        return "Configuration Option 4 is selected"
+        
+    elif option == "0":
+        print("Exiting Configuration Menu...")
+        time.sleep(2)
+        return False
+    else:
+        print ("Invalid option")
+        return "Invalid Configuration Option"
+
 #try_list=[["X","O","A","B"], ["1","2"]]
 #try_empty = []
 #verify_list=[["X","O","A","B"], ["X","O","A","B"]]
 
+<<<<<<< HEAD:MazeCode/mazegame.py
 
 
 def check_option(option, end=''):
+=======
+def check_option(option):
+>>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58:MazeCode/mazegame_code.py
     if option == "1":
         if end=="break":
             return "Option 1 selected"
@@ -287,21 +418,42 @@ def check_option(option, end=''):
         return "Option 3 selected"
     
     elif option == "4":
+<<<<<<< HEAD:MazeCode/mazegame.py
         if end=="break":
             return "Option 4 selected"
         displayConfigurationMenu()
         config_option = input("Enter your options: ")
+=======
+        empty = check_List(maze)
+        if empty == "List is occupied.":
+            isDisplayingConfigurationMenu = True
+            while isDisplayingConfigurationMenu != False:
+                checkMaze(maze)
+                displayConfigurationMenu()
+                print("\n\n")
+                isDisplayingConfigurationMenu = check_configuration_option(input("Enter your option: "))
+
+>>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58:MazeCode/mazegame_code.py
         return "Option 4 selected"
+
     elif option == "0":
         print("Exiting...")
         time.sleep(3)
         return False
+
     else:
         print ("Invalid option")
         return "Invalid Option"
 
+<<<<<<< HEAD:MazeCode/mazegame.py
     
 """while run != False:
     display_menu(True)
     #option = 
     run = check_option(input ("Enter your option: "))"""
+=======
+if __name__ == "__main__":
+    while run != False:
+        display_menu(True)
+        run = check_option(input ("Enter your option: "))
+>>>>>>> 8c276d4908d299e9e9685c63e4eacc36b1c91c58:MazeCode/mazegame_code.py
