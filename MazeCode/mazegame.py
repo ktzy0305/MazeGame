@@ -6,7 +6,7 @@ import csv
 import time
 import re
 
-
+#Added change
 
 # Options for main menu
 menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
