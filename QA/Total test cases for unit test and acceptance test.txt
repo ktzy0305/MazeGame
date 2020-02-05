@@ -1,0 +1,19 @@
+Tabulating the total unit test cases and acceptance test cases.
+
+Unit test cases: 
+1.Menu unit test case: 11 test
+2.(Option 1) Read and load maze from file unit test case: 5 test
+3.(Option 2) view maze unit test case: 5 test
+4.(Option 3) play maze game unit test case: 15 test
+5.(Option 4) configure current maze unit test case: 10 test
+
+Total unit test case: 11+5+5+15+10 = 46 unit test cases
+=================================================================================
+Acceptance test cases:
+1.Main menu screen: 7 test 
+2.Read and load maze from file: 6 test
+3.View maze: 4 test
+4.Play maze game: 10 test
+5.Configure maze: 7 test
+
+Total acceptance test case: 7+6+4+10+7 = 34 
