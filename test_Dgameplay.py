@@ -10,8 +10,11 @@ maze = [
 
 num= 2,2
 
+check_filename('play_maze_test.csv')
+
 def test_add_list():
-    check_filename('play_maze_test.csv')    
+    check_filename('play_maze_test.csv')
+    
     
 def test_error_inputation1(): #testcase 1
     result = move("1", num)
@@ -32,6 +35,7 @@ def test_error_inputation4(): #testcase 1
 def test_upward_movement(): #testcase 2
     check_filename('play_maze_test1.csv')
     result = move("W", (2,2))
+    check_option("2")
     assert result == "Moved upwards"
 
 def test_downward_movement(): #testcase 3
