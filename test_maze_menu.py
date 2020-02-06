@@ -1,4 +1,5 @@
 import pytest
+import builtins
 from MazeCode.mazegame import *
 
 def test_invalid_display_menu(): #test case 1
@@ -12,7 +13,7 @@ def test_display_menu(): #test case 2
 def  test_invalid_option_input(): #test case 3
     result = check_option("5")
     assert result == "Invalid Option"
-    
+  
 def  test_alphabet_input(): #test case 4
     result = check_option("abc")
     assert result == "Invalid Option"
@@ -45,3 +46,4 @@ def test_option0(): #test case 11
     result = check_option("0")
     assert result == False
     
+
