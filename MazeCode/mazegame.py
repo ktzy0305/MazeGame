@@ -415,8 +415,6 @@ def check_option(option, end=''):
     elif option == "4":
         if end=="break":
             return "Option 4 selected"
-        displayConfigurationMenu()
-        config_option = input("Enter your options: ")
         empty = check_List(maze)
         if empty == "List is occupied.":
             isDisplayingConfigurationMenu = True
